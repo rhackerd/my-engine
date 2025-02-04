@@ -1,0 +1,7 @@
+*.make
+*.sh
+Makefile
+.vscode/*
+bin/*
+obj/*
+imgui.ini
