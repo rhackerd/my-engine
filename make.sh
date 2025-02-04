@@ -1,1 +1,0 @@
-premake5 gmake2;make;printf "\n\n";./bin/Debug/App;printf "\n\n"
