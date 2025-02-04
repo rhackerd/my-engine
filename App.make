@@ -29,13 +29,13 @@ ifeq ($(origin AR), default)
 endif
 RESCOMP = windres
 DEFINES +=
-INCLUDES +=
+INCLUDES += -Isrc/core -IrlImGui
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS)
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-ALL_LDFLAGS += $(LDFLAGS) -s
+ALL_LDFLAGS += $(LDFLAGS) -LrlImGui/bin/Debug -s
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -48,14 +48,14 @@ ifeq ($(config),debug)
 TARGETDIR = bin/Debug
 TARGET = $(TARGETDIR)/App
 OBJDIR = obj/Debug/App
-LIBS += bin/Debug/libCore.a -lfmt
+LIBS += bin/Debug/libCore.a -lfmt -lrlImGui -lraylib
 LDDEPS += bin/Debug/libCore.a
 
 else ifeq ($(config),release)
 TARGETDIR = bin/Release
 TARGET = $(TARGETDIR)/App
 OBJDIR = obj/Release/App
-LIBS += bin/Release/libCore.a -lfmt
+LIBS += bin/Release/libCore.a -lfmt -lrlImGui -lraylib
 LDDEPS += bin/Release/libCore.a
 
 endif
@@ -70,8 +70,8 @@ endif
 GENERATED :=
 OBJECTS :=
 
-GENERATED += $(OBJDIR)/app.o
-OBJECTS += $(OBJDIR)/app.o
+GENERATED += $(OBJDIR)/main.o
+OBJECTS += $(OBJDIR)/main.o
 
 # Rules
 # #############################################
@@ -135,7 +135,7 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/app.o: src/app/app.cpp
+$(OBJDIR)/main.o: src/app/main.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
