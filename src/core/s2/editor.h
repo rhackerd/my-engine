@@ -1,3 +1,6 @@
+#ifndef EDITOR_H
+#define EDITOR_H
+
 #include <fmt/core.h>
 #include <string.h>
 #include "./logy.h"
@@ -25,3 +28,5 @@ class Editor
     void setExecutable(const std::string new_executable){code_executable=new_executable;}
     std::string getExecutable(){return code_executable;}
 };
+
+#endif

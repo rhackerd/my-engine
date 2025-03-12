@@ -13,6 +13,20 @@ Graphics::~Graphics()
 void Graphics::draw()
 {
     ClearBackground(background_color);
+
+}
+
+
+void Graphics::render() {
+    DrawCube(Vector3{0, 0, 0}, 2.0f, 2.0f, 2.0f, RED);
+}
+
+void Graphics::renderToTexture(RenderTexture2D renderTexture)
+{
+    BeginTextureMode(renderTexture);
+    ClearBackground(background_color);
+    DrawCube(Vector3{0, 0, 0}, 2.0f, 2.0f, 2.0f, RED);
+    EndTextureMode();
 }
 
 void Graphics::event()

@@ -1,3 +1,7 @@
+#ifndef GRAPHICS_H
+#define GRAPHICS_H
+
+
 #include <raylib.h>
 #include <raymath.h>
 
@@ -28,4 +32,9 @@ class Graphics
         Vector2 getWindowSize();
         Vector2 getWindowPosition();
         Color getClearColor();
+
+        void renderToTexture(RenderTexture2D renderTexture);
+        void render();
 };
+
+#endif
